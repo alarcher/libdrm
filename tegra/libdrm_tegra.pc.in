@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libdrm_tegra
 Description: Userspace interface to Tegra kernel DRM services
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -ldrm_tegra
-Cflags: -I${includedir} -I${includedir}/libdrm
+Libs: -L${libdir} -R${libdir} -ldrm_tegra
+Cflags: -I${includedir} -I${includedir}/drm
 Requires.private: libdrm

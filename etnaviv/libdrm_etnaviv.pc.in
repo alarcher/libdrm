@@ -7,5 +7,5 @@ Name: libdrm_etnaviv
 Description: Userspace interface to etnaviv kernel DRM services
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -ldrm_etnaviv
-Cflags: -I${includedir} -I${includedir}/libdrm
+Cflags: -I${includedir} -I${includedir}/drm
 Requires.private: libdrm
