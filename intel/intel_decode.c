@@ -398,6 +398,7 @@ decode_2d_br01(struct drm_intel_decode *ctx)
 		format = "1555";
 		break;
 	case 3:
+	default:	/* Keep GCC happy. */
 		format = "8888";
 		break;
 	}
