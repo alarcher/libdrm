@@ -850,7 +850,9 @@ int drmCheckModesettingSupported(const char *busid)
 	drmClose(fd);
 	return 0;
 #endif
-	return -ENOSYS;
+
+/* for now return 0 on solaris */
+	return 0;
 }
 
 int drmModeCrtcGetGamma(int fd, uint32_t crtc_id, uint32_t size,
