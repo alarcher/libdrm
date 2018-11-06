@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libdrm_omap
 Description: Userspace interface to omap kernel DRM services
 Version: 0.6
-Libs: -L${libdir} -ldrm_omap
-Cflags: -I${includedir} -I${includedir}/libdrm -I${includedir}/omap
+Libs: -L${libdir} -R${libdir} -ldrm_omap
+Cflags: -I${includedir} -I${includedir}/drm -I${includedir}/omap
 Requires.private: libdrm

@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libdrm_radeon
 Description: Userspace interface to kernel DRM services for radeon
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -ldrm_radeon
-Cflags: -I${includedir} -I${includedir}/libdrm
+Libs: -L${libdir} -R${libdir} -ldrm_radeon
+Cflags: -I${includedir} -I${includedir}/drm
 Requires.private: libdrm

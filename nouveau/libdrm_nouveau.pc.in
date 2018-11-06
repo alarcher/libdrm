@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libdrm_nouveau
 Description: Userspace interface to nouveau kernel DRM services
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -ldrm_nouveau
-Cflags: -I${includedir} -I${includedir}/libdrm -I${includedir}/libdrm/nouveau
+Libs: -L${libdir} -R${libdir} -ldrm_nouveau
+Cflags: -I${includedir} -I${includedir}/drm -I${includedir}/drm/nouveau
 Requires.private: libdrm

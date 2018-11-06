@@ -7,5 +7,5 @@ Name: libdrm_intel
 Description: Userspace interface to intel kernel DRM services
 Version: @PACKAGE_VERSION@
 Requires: libdrm
-Libs: -L${libdir} -ldrm_intel
-Cflags: -I${includedir} -I${includedir}/libdrm
+Libs: -L${libdir} -R${libdir} -ldrm_intel
+Cflags: -I${includedir} -I${includedir}/drm
