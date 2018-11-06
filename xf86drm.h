@@ -472,6 +472,17 @@ do {	register unsigned int __old __asm("o0");		\
 #endif /* architecture */
 #endif /* __GNUC__ >= 2 */
 
+#if defined(__SUNPRO_C)
+#include <atomic.h>
+#define atomic_cmpset_int(p, c, n) ((c == atomic_cas_uint(p, c, n)) ? 1 : 0)
+#define DRM_CAS(lock,old,new,__ret)          \
+               do {                          \
+                                       unsigned int __result, __old = (old);\
+                                       __result = !atomic_cmpset_int(lock,__old,new);\
+                                       __ret = __result;          \
+                               } while(0)
+#endif
+
 #ifndef DRM_CAS
 #define DRM_CAS(lock,old,new,ret) do { ret=1; } while (0) /* FAST LOCK FAILS */
 #endif
@@ -875,6 +886,14 @@ extern int drmSyncobjWait(int fd, uint32_t *handles, unsigned num_handles,
 			  uint32_t *first_signaled);
 extern int drmSyncobjReset(int fd, const uint32_t *handles, uint32_t handle_count);
 extern int drmSyncobjSignal(int fd, const uint32_t *handles, uint32_t handle_count);
+
+#ifdef __sun
+extern int _sun_drm_get_major(void);
+extern int _sun_drm_find_device(int min, char **pathp);
+extern int _sun_drm_get_subsystem(char *path);
+extern int _sun_drm_get_pci_bus_info(char *path, drmPciBusInfo *bus);
+extern int _sun_drm_get_pci_dev_info(char *path, drmPciDeviceInfo *dev);
+#endif /* __sun */
 
 #if defined(__cplusplus)
 }
