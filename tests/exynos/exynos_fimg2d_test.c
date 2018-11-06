@@ -22,7 +22,7 @@
 #include <unistd.h>
 
 #include <sys/mman.h>
-#include <linux/stddef.h>
+#include <stddef.h>
 
 #include <xf86drm.h>
 #include <xf86drmMode.h>

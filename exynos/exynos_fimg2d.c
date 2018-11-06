@@ -21,7 +21,7 @@
 #include <assert.h>
 
 #include <sys/mman.h>
-#include <linux/stddef.h>
+#include <stddef.h>
 
 #include <xf86drm.h>
 
@@ -698,9 +698,10 @@ g2d_copy_with_scale(struct g2d_context *ctx, struct g2d_image *src,
 	if (negative)
 		negative = 1;
 
-	if (src_w == dst_w && src_h == dst_h)
+	if (src_w == dst_w && src_h == dst_h) {
 		scale = 0;
-	else {
+		scale_x = scale_y = 0; /* GCC warnings */
+	} else {
 		scale = 1;
 		scale_x = g2d_get_scaling(src_w, dst_w);
 		scale_y = g2d_get_scaling(src_h, dst_h);
@@ -920,9 +921,10 @@ g2d_scale_and_blend(struct g2d_context *ctx, struct g2d_image *src,
 	unsigned int scale, gem_space;
 	unsigned int scale_x, scale_y;
 
-	if (src_w == dst_w && src_h == dst_h)
+	if (src_w == dst_w && src_h == dst_h) {
 		scale = 0;
-	else {
+		scale_x = scale_y = 0; /* GCC warnings */
+	} else {
 		scale = 1;
 		scale_x = g2d_get_scaling(src_w, dst_w);
 		scale_y = g2d_get_scaling(src_h, dst_h);
